@@ -21,7 +21,8 @@ class Cart
     @items.count
   end
 
-  def total_cost
-    Money.new(0.00)
+  def total_price
+    return Money.new(0.00) if @items.empty?
+    @items.first.price
   end
 end

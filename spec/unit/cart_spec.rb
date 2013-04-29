@@ -7,6 +7,12 @@ describe Cart do
   let(:phone) { fake }
   let(:laptop) { fake }
 
+  before :each do
+    crayons.stub(:price).and_return(Money.new(1.99))
+    phone.stub(:price).and_return(Money.new(199.99))
+    laptop.stub(:price).and_return(Money.new(1999.99))
+  end
+
   context "when there are no items in the cart"  do
     it "should indicate that no items are included" do
       sut.includes?(crayons).should be_false
@@ -16,8 +22,8 @@ describe Cart do
       sut.total_items.should == 0
     end
 
-    it "should calculate a total cost of $0.00" do
-      sut.total_cost.should == Money.new(0.00)
+    it "should calculate a total price of $0.00" do
+      sut.total_price.should == Money.new(0.00)
     end
   end
 
@@ -30,6 +36,10 @@ describe Cart do
 
     it "should indicate the total number of unique items in the cart" do
       sut.total_items.should == 1
+    end
+
+    it "should calculate a total price of $0.00" do
+      sut.total_price.should == crayons.price
     end
   end
 
