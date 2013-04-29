@@ -16,4 +16,8 @@ class Cart
       item == product
     end.count
   end
+
+  def total_items
+    @items.count
+  end
 end
