@@ -38,7 +38,7 @@ describe Cart do
       sut.total_items.should == 1
     end
 
-    it "should calculate a total price of $0.00" do
+    it "should calculate a total price" do
       sut.total_price.should == crayons.price
     end
   end
@@ -56,6 +56,10 @@ describe Cart do
     it "should indicate the total number of items in the cart" do
       sut.total_items.should == 2
     end
+
+    it "should calculate the total price" do
+      sut.total_price.should == crayons.price + crayons.price
+    end
   end
 
   context "when there is multiple products" do
@@ -67,6 +71,10 @@ describe Cart do
 
     it "should indicate the total number of items in the cart" do
       sut.total_items.should == 3
+    end
+
+    it "should calculate the total price" do
+      sut.total_price.should == crayons.price + phone.price + laptop.price
     end
   end
 

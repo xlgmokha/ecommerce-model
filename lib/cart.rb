@@ -22,7 +22,8 @@ class Cart
   end
 
   def total_price
-    return Money.new(0.00) if @items.empty?
-    @items.first.price
+    @items.reduce(Money.new(0.00)) do |total, item|
+      total + item.price
+    end
   end
 end
