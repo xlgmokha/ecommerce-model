@@ -15,4 +15,10 @@ describe Money do
       end
     end
   end
+  context "when adding money" do
+    it "should return the new amount" do
+      result = Money.new(1.99) + Money.new(0.01)
+      result.should == Money.new(2.00)
+    end
+  end
 end
