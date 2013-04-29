@@ -20,4 +20,8 @@ class Cart
   def total_items
     @items.count
   end
+
+  def total_cost
+    Money.new(0.00)
+  end
 end

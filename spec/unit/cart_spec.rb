@@ -8,14 +8,20 @@ describe Cart do
   let(:laptop) { fake }
 
   context "when there are no items in the cart"  do
-    let(:result) { sut.includes?(crayons) }
+    it "should indicate that no items are included" do
+      sut.includes?(crayons).should be_false
+    end
 
-    it "should return false" do
-      result.should be_false
+    it "should indicate that there are no items in the cart" do
+      sut.total_items.should == 0
+    end
+
+    it "should calculate a total cost of $0.00" do
+      sut.total_cost.should == Money.new(0.00)
     end
   end
 
-  context "when adding a product" do
+  context "when there is a single item in the cart" do
     before { sut.add(crayons) }
 
     it "should increase the quanity of that product" do
@@ -27,7 +33,7 @@ describe Cart do
     end
   end
 
-  context "when adding more then one of the same product" do
+  context "when there are multiples of a single product" do
     before :each do
       sut.add(crayons)
       sut.add(crayons)
@@ -42,7 +48,7 @@ describe Cart do
     end
   end
 
-  context "when adding different products" do
+  context "when there is multiple products" do
     before :each do
       sut.add(crayons)
       sut.add(phone)
