@@ -6,11 +6,11 @@ class Money
   end
 
   def +(other)
-    plus(other)
+    Money.new(@amount + other.amount)
   end
 
-  def plus(other)
-    Money.new(@amount + other.amount)
+  def -(other)
+    Money.new(@amount - other.amount)
   end
 
   def ==(other)

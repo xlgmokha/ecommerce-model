@@ -21,4 +21,9 @@ describe Money do
       result.should == Money.new(2.00)
     end
   end
+  context "when subtracting money" do
+    it "should return the correct amount" do
+      (Money.new(1.99) - Money.new(0.99)).should == Money.new(1.00)
+    end
+  end
 end
